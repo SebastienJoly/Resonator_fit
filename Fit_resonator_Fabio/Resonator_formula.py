@@ -60,10 +60,9 @@ def n_Resonator_longitudinal_imp(frequencies, dict_params):
     dict_params : dict where each key corresponds to a single resonator
     resonator parameters are stored in a list following this format : 
         [Rt, Q, resonant_frequency]
-    Example dict_params = {'1': [1000000.0, 1, 1000000000.0],
-                           '2' : [2000000.0, 1, 500000000.0]}
+    Example dict_params = {1: [1000000.0, 1, 1000000000.0],
+                           2 : [2000000.0, 1, 500000000.0]}
     """
-    print(dict_params)
     Zt = 0
     for resonator in dict_params.keys():
         Zt += Resonator_longitudinal_imp(frequencies, *dict_params[resonator]) 
@@ -94,10 +93,9 @@ def n_Resonator_transverse_imp(frequencies, dict_params):
     dict_params : dict where each key corresponds to a single resonator
     resonator parameters are stored in a list following this format : 
         [Rt, Q, resonant_frequency]
-    Example dict_params = {'1': [1000000.0, 1, 1000000000.0],
-                           '2' : [2000000.0, 1, 500000000.0]}
+    Example dict_params = {1: [1000000.0, 1, 1000000000.0],
+                           2 : [2000000.0, 1, 500000000.0]}
     """
-    print(dict_params)
     Zt = 0
     for resonator in dict_params.keys():
         Zt += Resonator_transverse_imp(frequencies, *dict_params[resonator]) 
@@ -105,13 +103,11 @@ def n_Resonator_transverse_imp(frequencies, dict_params):
 
 
 def Resonator_longitudinal_wake(times, Rt, Q, resonant_frequency):
-    """Be careful, units for this formula are Rt [Ohm/m], Q [], fres [Ghz]"""
-    resonant_frequency *= 1e9
+    """Be careful, units for this formula are Rt [Ohm/m], Q [], fres [hz]"""
     return (Rt*2*np.pi*resonant_frequency)*np.exp(-2*np.pi*resonant_frequency*times/(2*Q))/Q*(np.cos(2*np.pi*resonant_frequency*np.sqrt(np.abs(1-(1/(4*Q*Q))))*times)+(-2*np.pi*resonant_frequency/(2*Q)/2*np.pi*resonant_frequency*np.sqrt(np.abs(1-(1/(4*Q*Q)))))*np.sin(2*np.pi*resonant_frequency*np.sqrt(np.abs(1-(1/(4*Q*Q))))*times))
 
 def Resonator_transverse_wake(times, Rt, Q, resonant_frequency):
-    """Be careful, units for this formula are Rt [Ohm/m], Q [], fres [Ghz]"""
-    resonant_frequency *= 1e9
+    """Be careful, units for this formula are Rt [Ohm/m], Q [], fres [hz]"""
     return ((Rt*2*np.pi*resonant_frequency)/(Q*np.sqrt(np.abs(1-(1/(4*Q*Q))))))*np.exp(-1*np.pi*resonant_frequency*times/Q)*np.sin(2*np.pi*resonant_frequency*np.sqrt(np.abs(1-(1/(4*Q*Q))))*times)
 
 def n_Resonator_longitudinal_wake(times, dict_params):
@@ -120,10 +116,9 @@ def n_Resonator_longitudinal_wake(times, dict_params):
     dict_params : dict where each key corresponds to a single resonator
     resonator parameters are stored in a list following this format : 
         [Rt, Q, resonant_frequency]
-    Example dict_params = {'1': [1000000.0, 1, 1000000000.0],
-                           '2' : [2000000.0, 1, 500000000.0]}
+    Example dict_params = {1: [1000000.0, 1, 1000000000.0],
+                           2 : [2000000.0, 1, 500000000.0]}
     """
-    print(dict_params)
     Wt = 0
     for resonator in dict_params.keys():
         Wt += Resonator_longitudinal_wake(times, *dict_params[resonator])
@@ -135,10 +130,9 @@ def n_Resonator_transverse_wake(times, dict_params):
     dict_params : dict where each key corresponds to a single resonator
     resonator parameters are stored in a list following this format : 
         [Rt, Q, resonant_frequency]
-    Example dict_params = {'1': [1000000.0, 1, 1000000000.0],
-                           '2' : [2000000.0, 1, 500000000.0]}
+    Example dict_params = {1: [1000000.0, 1, 1000000000.0],
+                           2 : [2000000.0, 1, 500000000.0]}
     """
-    print(dict_params)
     Wt = 0
     for resonator in dict_params.keys():
         Wt += Resonator_transverse_wake(times, *dict_params[resonator])
